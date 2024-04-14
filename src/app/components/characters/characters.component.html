@@ -1,0 +1,58 @@
+<ng-container *ngIf="characters(); else loadingTemplate">
+  <div class="dropdown mt-5 mb-3">
+    <button
+      class="btn btn-secondary dropdown-toggle"
+      type="button"
+      data-bs-toggle="dropdown"
+      aria-expanded="false"
+    >
+      Filter By Species
+    </button>
+    <ul class="dropdown-menu">
+      <li>
+        <a class="dropdown-item" role="button" (click)="selectSpecies('Human')"
+          >Human</a
+        >
+      </li>
+      <li>
+        <a class="dropdown-item" role="button" (click)="selectSpecies('Alien')"
+          >Alien</a
+        >
+      </li>
+    </ul>
+  </div>
+  <table class="table table-striped table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Code</th>
+        <th scope="col">Name</th>
+        <th scope="col">Currency</th>
+        <th scope="col">Continent</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        *ngFor="let character of characters()"
+        [routerLink]="['/character', character.id]"
+      >
+        <th scope="row">{{ character.id }}</th>
+        <td>{{ character.name }}</td>
+        <td>{{ character.status }}</td>
+        <td>{{ character.species }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="pagination">
+    <button
+      type="button"
+      class="btn btn-dark"
+      (click)="previous()"
+      [disabled]="page <= 1"
+    >
+      Previous
+    </button>
+    <button type="button" class="btn btn-dark" (click)="next()">Next</button>
+  </div>
+</ng-container>
+
+<ng-template #loadingTemplate> Loading... </ng-template>

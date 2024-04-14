@@ -1,0 +1,41 @@
+<ng-container *ngIf="character$ | async as character">
+  <div class="picture">
+    <img [src]="character.image" alt="picture" />
+  </div>
+  <ul class="list-group">
+    <li class="list-group-item">
+      <span class="list-group-item-left">ID</span>
+      <span class="list-group-item-right">{{ character.id }}</span>
+    </li>
+    <li class="list-group-item">
+      <span class="list-group-item-left">Name</span>
+      <span class="list-group-item-right">{{ character.name }}</span>
+    </li>
+    <li class="list-group-item">
+      <span class="list-group-item-left">Status</span>
+      <span class="list-group-item-right">{{ character.status }}</span>
+    </li>
+    <li class="list-group-item">
+      <span class="list-group-item-left">Species</span>
+      <span class="list-group-item-right">{{ character.species }}</span>
+    </li>
+    <li class="list-group-item">
+      <span class="list-group-item-left">Origin</span>
+      <span class="list-group-item-right">{{ character.origin?.name }}</span>
+    </li>
+    <li class="list-group-item">
+      <span class="list-group-item-left">Location</span>
+      <span class="list-group-item-right">{{ character.location?.name }}</span>
+    </li>
+    <li class="list-group-item">
+      <span class="list-group-item-left">Episode</span>
+      <div class="list-group-item-right">
+        <span
+          class="badge rounded-pill text-bg-primary"
+          *ngFor="let episode of character.episode"
+          >{{ episode.name }}</span
+        >
+      </div>
+    </li>
+  </ul>
+</ng-container>
